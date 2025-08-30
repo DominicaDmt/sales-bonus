@@ -139,7 +139,7 @@ function analyzeSalesData(data, options) {
         revenue: +seller.revenue.toFixed(2),
         profit: +seller.profit.toFixed(2),
         sales_count: seller.sales_count,
-        top_products:  seller.top_products,
+         top_products: Array.isArray(seller.top_products) ? seller.top_products.slice(0, 10) : [],
         bonus: +seller.bonus.toFixed(2)
 })); 
 }
