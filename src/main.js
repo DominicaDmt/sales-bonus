@@ -119,7 +119,12 @@ function analyzeSalesData(data, options) {
     });
 
     // @TODO: Сортировка продавцов по прибыли
-     const sortedSellers = [...sellerStats].sort((a, b) => b.profit - a.profit);
+     const sortedSellers = sellerStats.sort((a, b) => {
+  // обработка ошибок
+  const profitA = Number(a.profit) || 0;
+  const profitB = Number(b.profit) || 0;
+  return profitB - profitA;
+});
 
     // @TODO: Назначение премий на основе ранжирования
     const totalSellers = sortedSellers.length;
@@ -139,7 +144,7 @@ function analyzeSalesData(data, options) {
         revenue: +seller.revenue.toFixed(2),
         profit: +seller.profit.toFixed(2),
         sales_count: seller.sales_count,
-         top_products: Array.isArray(seller.top_products) ? seller.top_products.slice(0, 10) : [],
+        top_products: seller.top_products,
         bonus: +seller.bonus.toFixed(2)
 })); 
 }
