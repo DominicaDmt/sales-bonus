@@ -120,7 +120,7 @@ function analyzeSalesData(data, options) {
 
     // @TODO: Сортировка продавцов по прибыли
      const sortedSellers = sellerStats.sort((a, b) => b.profit - a.profit);
-     
+
     // @TODO: Назначение премий на основе ранжирования
     const totalSellers = sortedSellers.length;
     sortedSellers.forEach((seller, index) => {
@@ -134,7 +134,7 @@ function analyzeSalesData(data, options) {
 
     // @TODO: Подготовка итоговой коллекции с нужными полями
     return sellerStats.map(seller => ({
-        id: seller.id,
+        seller_id: seller.id,
         name: seller.name,
         revenue: +seller.revenue.toFixed(2),
         profit: +seller.profit.toFixed(2),
