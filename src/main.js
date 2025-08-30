@@ -95,7 +95,7 @@ function analyzeSalesData(data, options) {
         // Расчёт прибыли для каждого товара
         record.items.forEach(item => {
             const product = productIndex[item.sku];
-            if (!product) return; 
+            if (!product) return; // Пропускаем если товар не найден
 
             // Посчитать себестоимость (cost) товара
             const cost = product.purchase_price * item.quantity;
@@ -134,12 +134,12 @@ function analyzeSalesData(data, options) {
 
     // @TODO: Подготовка итоговой коллекции с нужными полями
     return sellerStats.map(seller => ({
-        seller_id: seller.seller_id,
+        id: seller.id,
         name: seller.name,
         revenue: +seller.revenue.toFixed(2),
         profit: +seller.profit.toFixed(2),
         sales_count: seller.sales_count,
-        top_products: seller.top_products,
+        products_sold: seller.products_sold,
         bonus: +seller.bonus.toFixed(2)
 })); 
 }
